@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Apparel Fashion</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 min-h-screen">
+
+    <nav class="bg-rose-600 text-white shadow-md sticky top-0 z-10">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+           <div class="flex items-center gap-3">
+                <div class="bg-white/20 backdrop-blur-sm text-white p-1.5 rounded-lg border border-white/30 shadow-sm">
+                    <img src="./LogoAura.png" alt="Logo" class="h-8 w-auto">
+                </div>
+                
+                <div class="flex flex-col justify-center">
+                    <h1 class="text-xl font-bold tracking-tight text-white drop-shadow-sm leading-none">Aura Apparel</h1>
+                    <span class="text-[10px] font-semibold text-white/90 uppercase tracking-widest mt-1 drop-shadow-sm">
+                        Instagram Fashion Review
+                    </span>
+                </div>
+            </div>
+            <span class="bg-rose-800 text-yellow-200 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-indigo-700">
+                Hannani Hanis, Nurhafizah, Anis Nazhirah
+            </span>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 py-8">
+        
+       <div id="uploadContainer" class="bg-white p-10 rounded-2xl shadow-sm border border-slate-200 text-center max-w-2xl mx-auto transition-all duration-500">
+            
+            <div class="bg-rose-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+            </div> 
+            
+            <h2 class="text-lg font-bold text-slate-800 mb-2">Import File Here</h2>
+            <p class="text-sm text-slate-500 mb-6">Select your extracted CSV file to map the community interactions.</p>
+            
+            <input type="file" id="csvUploader" accept=".csv" class="hidden" onchange="processFile(event)">
+            
+            <label for="csvUploader" class="cursor-pointer inline-flex items-center justify-center bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2.5 px-6 rounded-xl transition shadow-sm text-sm">
+                Browse for .csv File
+            </label>
+        </div>
+
+        <div id="dashboardInterface" class="hidden opacity-0 transition-opacity duration-700 space-y-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4">
+                    <div class="bg-emerald-100 text-emerald-600 p-3 rounded-xl">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Total Interactions</p>
+                        <h3 id="statTotal" class="text-2xl font-extrabold text-slate-800">0</h3>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4">
+                    <div class="bg-violet-100 text-violet-600 p-3 rounded-xl">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Unique Interactions</p>
+                        <h3 id="statUsers" class="text-2xl font-extrabold text-slate-800">0</h3>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-600 p-6 rounded-2xl shadow-sm border border-indigo-700 text-white flex flex-col justify-center">
+                    <p class="text-[11px] font-bold text-indigo-300 uppercase tracking-wider block mb-1">Status</p>
+                    <div class="flex items-center gap-2">
+                        <span class="relative flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                        </span>
+                        <span class="text-sm font-semibold">Data Mapped Successfully</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-50 border-b border-slate-200 px-6 py-4">
+                    <h3 class="text-sm font-bold text-slate-700">Community Interaction Log</h3>
+                </div>
+                
+                <div id="feedList" class="max-h-[600px] overflow-y-auto p-6 space-y-6">
+                    </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function processFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            Papa.parse(file, {
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    const data = results.data;
+                    if(data.length === 0) {
+                        alert("File is empty.");
+                        return;
+                    }
+                    buildDashboard(data);
+                },
+                error: function(err) {
+                    alert("Parsing Error: " + err.message);
+                }
+            });
+        }
+
+        function buildDashboard(data) {
+            // 1. Calculate Statistics
+            const totalInteractions = data.length;
+            
+            // Extract unique usernames using a Javascript Set
+            const uniqueUsers = new Set();
+            data.forEach(row => {
+                if(row['Username']) uniqueUsers.add(row['Username']);
+            });
+
+            // 2. Update the UI Text
+            document.getElementById('statTotal').innerText = totalInteractions;
+            document.getElementById('statUsers').innerText = uniqueUsers.size;
+
+            // 3. Switch the Views smoothly
+            document.getElementById('uploadContainer').classList.add('hidden');
+            const dashboard = document.getElementById('dashboardInterface');
+            dashboard.classList.remove('hidden');
+            // Small delay to allow CSS opacity transition to trigger
+            setTimeout(() => dashboard.classList.remove('opacity-0'), 50);
+
+            // 4. Render the Feed
+            const feed = document.getElementById('feedList');
+            feed.innerHTML = '';
+
+            data.forEach((row, index) => {
+                // Fallback avatar using ui-avatars
+                const avatarSrc = row['Avatar URL'] ? row['Avatar URL'] : `https://ui-avatars.com/api/?name=${encodeURIComponent(row['Username'] || 'User')}&background=eef2ff&color=4f46e5`;
+                const dateText = row['Date'] || 'Unknown Date';
+                const commentText = row['Comment Text'] || 'No text provided.';
+                const profileUrl = row['Profile URL'] || '#';
+                const username = row['Username'] || 'Anonymous';
+
+                // We add a subtle line connecting comments unless it's the last one (Timeline style)
+                const isLast = index === data.length - 1;
+                const lineStyle = isLast ? '' : 'border-l-2 border-slate-100 pb-8';
+
+                feed.innerHTML += `
+                    <div class="relative pl-4 ${lineStyle} ml-6">
+                        <div class="absolute -left-6 top-0 bg-white p-1 rounded-full border border-slate-200">
+                            <a href="${profileUrl}" target="_blank">
+                                <img src="${avatarSrc}" alt="${username}" class="w-10 h-10 rounded-full object-cover">
+                            </a>
+                        </div>
+                        
+                        <div class="bg-slate-50 hover:bg-indigo-50/50 p-4 rounded-xl border border-slate-200 transition duration-200 ml-4">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-1">
+                                <a href="${profileUrl}" target="_blank" class="text-sm font-bold text-slate-900 hover:text-indigo-600 transition">
+                                    @${username}
+                                </a>
+                                <span class="text-[10px] font-mono text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200 shadow-sm">
+                                    ${dateText}
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap">${commentText}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
