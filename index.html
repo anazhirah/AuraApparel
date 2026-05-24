@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Apparel Intelligence</title>
+    <title>Aura Apparel Fashion</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 </head>
 <body class="bg-slate-100 font-sans text-slate-800 min-h-screen overflow-x-hidden">
 
-    <div id="welcomeView" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-400 via-orange-400 to-pink-500 p-6 transition-opacity duration-700">
-        <div class="bg-white/20 backdrop-blur-md border border-white/30 p-12 rounded-3xl shadow-2xl text-center max-w-lg w-full text-white transform transition-transform duration-500 hover:scale-105">
+    <div id="welcomeView" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-indigo-700 to-blue-600 p-6 transition-opacity duration-700">
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-12 rounded-3xl shadow-2xl text-center max-w-lg w-full text-white transform transition-transform duration-500 hover:scale-105">
             
-            <div class="bg-white/30 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                </div>
+            <div class="bg-white/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                <img src="./LogoAura.png" alt="Aura Apparel Logo" class="w-12 h-12 object-contain">
+            </div>
             
             <h1 class="text-4xl font-extrabold tracking-tight mb-2 drop-shadow-md">Aura Apparel</h1>
-            <p class="text-xs font-bold uppercase tracking-widest text-white/90 mb-10 drop-shadow-sm">Instagram Fashion Review</p>
+            <p class="text-xs font-bold uppercase tracking-widest text-blue-200 mb-10 drop-shadow-sm">Fashion Review</p>
             
-            <p class="text-sm text-white/80 mb-8 leading-relaxed">
-                Welcome to the community intelligence platform. Explore verified customer reviews, sizing feedback, and styling discussions.
+            <p class="text-sm text-blue-100/80 mb-8 leading-relaxed">
+                Welcome to our community. Let's explore verified customer reviews, sizing feedback, and styling discussions.
             </p>
 
-            <button onclick="enterDashboard()" class="bg-white text-orange-500 font-extrabold py-3.5 px-10 rounded-full shadow-lg hover:shadow-2xl hover:bg-orange-50 hover:scale-105 transition-all duration-300">
-                Enter Dashboard
+            <button onclick="enterDashboard()" class="bg-white text-indigo-700 font-extrabold py-3.5 px-10 rounded-full shadow-lg hover:shadow-2xl hover:bg-blue-50 hover:scale-105 transition-all duration-300">
+                Click to Enter
             </button>
         </div>
     </div>
@@ -33,21 +33,21 @@
 
     <div id="dashboardView" class="hidden opacity-0 transition-opacity duration-1000">
         
-        <nav class="bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-500 text-white shadow-md sticky top-0 z-10">
+        <nav class="bg-gradient-to-r from-indigo-900 to-blue-800 text-white shadow-md sticky top-0 z-10">
             <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <div class="bg-white/20 backdrop-blur-sm text-white p-1.5 rounded-lg border border-white/30 shadow-sm">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <div class="bg-white/10 backdrop-blur-sm text-white p-1.5 rounded-lg border border-white/20 shadow-sm">
+                        <img src="./LogoAura.png" alt="Aura Apparel Logo" class="w-12 h-12 object-contain">
                     </div>
                     <div class="flex flex-col justify-center">
                         <h1 class="text-xl font-bold tracking-tight text-white drop-shadow-sm leading-none">Aura Apparel</h1>
-                        <span class="text-[10px] font-semibold text-white/90 uppercase tracking-widest mt-1 drop-shadow-sm">
+                        <span class="text-[10px] font-semibold text-blue-200 uppercase tracking-widest mt-1 drop-shadow-sm">
                             Instagram Fashion Review
                         </span>
                     </div>
                 </div>
-                <span class="bg-white/20 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-white/30 shadow-sm">
-                    Auto-Feed Active
+                <span class="bg-white/10 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-white/20 shadow-sm">
+                    Network Node Active
                 </span>
             </div>
         </nav>
@@ -55,28 +55,28 @@
         <main class="max-w-5xl mx-auto px-6 py-8">
             <div class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4 hover:border-orange-300 transition-colors">
-                        <div class="bg-emerald-100 text-emerald-600 p-3 rounded-xl">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4 hover:border-indigo-300 transition-colors">
+                        <div class="bg-blue-100 text-blue-600 p-3 rounded-xl">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
                         </div>
                         <div>
-                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Total Interactions</p>
+                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Interactions</p>
                             <h3 id="statTotal" class="text-2xl font-extrabold text-slate-800">Loading...</h3>
                         </div>
                     </div>
                     
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4 hover:border-orange-300 transition-colors">
-                        <div class="bg-violet-100 text-violet-600 p-3 rounded-xl">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4 hover:border-indigo-300 transition-colors">
+                        <div class="bg-indigo-100 text-indigo-600 p-3 rounded-xl">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         </div>
                         <div>
-                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Unique Actors</p>
+                            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">ActiveUsers</p>
                             <h3 id="statUsers" class="text-2xl font-extrabold text-slate-800">...</h3>
                         </div>
                     </div>
 
-                    <div id="statusCard" class="bg-amber-500 p-6 rounded-2xl shadow-sm border border-amber-600 text-white flex flex-col justify-center transition-colors duration-500">
-                        <p class="text-[11px] font-bold text-white/80 uppercase tracking-wider block mb-1">Status</p>
+                    <div id="statusCard" class="bg-indigo-600 p-6 rounded-2xl shadow-sm border border-indigo-700 text-white flex flex-col justify-center transition-colors duration-500">
+                        <p class="text-[11px] font-bold text-indigo-200 uppercase tracking-wider block mb-1">Status</p>
                         <div class="flex items-center gap-2">
                             <span class="relative flex h-3 w-3">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
@@ -88,98 +88,75 @@
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mt-6">
-                    <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex justify-between items-center">
-                        <h3 class="text-sm font-bold text-slate-700">Live Community Feed</h3>
+                    <div class="bg-slate-50 border-b border-slate-200 px-6 py-4">
+                        <h3 class="text-sm font-bold text-slate-700">Community Interaction Log</h3>
                     </div>
                     
                     <div id="feedList" class="max-h-[600px] overflow-y-auto p-6 space-y-6">
-                        </div>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
 
     <script>
-        // ⚠️ CHANGE THIS to the exact name of your Excel file uploaded to GitHub
+        // Ensure this filename matches your uploaded Excel file on GitHub
         const TARGET_FILE = './dataCakenis.xlsx';
 
-        // Function 1: Page Transition Logic
         function enterDashboard() {
             const welcome = document.getElementById('welcomeView');
             const dashboard = document.getElementById('dashboardView');
-
-            // 1. Fade out the welcome page
             welcome.classList.add('opacity-0');
-            
             setTimeout(() => {
-                // 2. Hide welcome page completely
                 welcome.classList.add('hidden');
-                
-                // 3. Show dashboard but keep it transparent
                 dashboard.classList.remove('hidden');
-                
-                // 4. Trigger data load
                 autoLoadExcel();
-
-                // 5. Fade in the dashboard smoothly
                 setTimeout(() => {
                     dashboard.classList.remove('opacity-0');
                 }, 50);
-
-            }, 700); // Waits for the fade-out CSS transition to finish
+            }, 700);
         }
 
-        // Function 2: Data Loading Logic (Runs ONLY after entering)
         async function autoLoadExcel() {
             try {
                 const response = await fetch(TARGET_FILE);
-                
-                if (!response.ok) {
-                    throw new Error(`Could not find "${TARGET_FILE}". Check your repository files.`);
-                }
+                if (!response.ok) throw new Error(`Data file not found.`);
 
                 const arrayBuffer = await response.arrayBuffer();
                 const data = new Uint8Array(arrayBuffer);
                 const workbook = XLSX.read(data, {type: 'array'});
-                
                 const firstSheetName = workbook.SheetNames[0];
                 const worksheet = workbook.Sheets[firstSheetName];
                 const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
 
-                if(jsonData.length === 0) throw new Error("Excel sheet is empty.");
-
                 buildDashboard(jsonData);
                 
                 const statusCard = document.getElementById('statusCard');
-                statusCard.classList.remove('bg-amber-500', 'border-amber-600');
+                statusCard.classList.remove('bg-indigo-600', 'border-indigo-700');
                 statusCard.classList.add('bg-emerald-500', 'border-emerald-600');
                 document.getElementById('statusText').innerText = "Data Stream Synced";
 
             } catch (error) {
                 const statusCard = document.getElementById('statusCard');
-                statusCard.classList.remove('bg-amber-500', 'border-amber-600');
+                statusCard.classList.remove('bg-indigo-600', 'border-indigo-700');
                 statusCard.classList.add('bg-rose-500', 'border-rose-600');
                 document.getElementById('statusText').innerText = `Error: ${error.message}`;
             }
         }
 
-        // Function 3: Drawing the Feed
         function buildDashboard(data) {
             document.getElementById('statTotal').innerText = data.length;
-            
             const uniqueUsers = new Set();
-            data.forEach(row => {
-                if(row['Username']) uniqueUsers.add(row['Username']);
-            });
+            data.forEach(row => { if(row['Username']) uniqueUsers.add(row['Username']); });
             document.getElementById('statUsers').innerText = uniqueUsers.size;
 
             const feed = document.getElementById('feedList');
             feed.innerHTML = '';
 
             data.forEach((row, index) => {
-                const avatarSrc = row['Avatar URL'] ? row['Avatar URL'] : `https://ui-avatars.com/api/?name=${encodeURIComponent(row['Username'] || 'User')}&background=fbcfe8&color=be123c`;
+                const avatarSrc = row['Avatar URL'] ? row['Avatar URL'] : `https://ui-avatars.com/api/?name=${encodeURIComponent(row['Username'] || 'User')}&background=e0e7ff&color=4338ca`;
                 const dateText = row['Date'] || 'Recent';
-                const commentText = row['Comment Text'] || 'No text provided.';
+                const commentText = row['Comment Text'] || 'No content.';
                 const profileUrl = row['Profile URL'] || '#';
                 const username = row['Username'] || 'Anonymous';
 
@@ -193,10 +170,9 @@
                                 <img src="${avatarSrc}" alt="${username}" class="w-10 h-10 rounded-full object-cover">
                             </a>
                         </div>
-                        
-                        <div class="bg-slate-50 hover:bg-orange-50/50 p-4 rounded-xl border border-slate-200 transition duration-200 ml-4 shadow-sm">
+                        <div class="bg-slate-50 hover:bg-indigo-50/80 p-4 rounded-xl border border-slate-200 transition duration-200 ml-4 shadow-sm">
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2 gap-1">
-                                <a href="${profileUrl}" target="_blank" class="text-sm font-bold text-slate-900 hover:text-orange-500 transition">
+                                <a href="${profileUrl}" target="_blank" class="text-sm font-bold text-slate-900 hover:text-indigo-600 transition">
                                     @${username}
                                 </a>
                                 <span class="text-[10px] font-mono text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200 shadow-sm">
