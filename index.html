@@ -10,6 +10,9 @@
 </head>
 <body class="bg-slate-100 font-sans text-slate-800 min-h-screen overflow-x-hidden">
 
+    <!-- ========================================== -->
+    <!-- VIEW 1: THE WELCOME PAGE -->
+    <!-- ========================================== -->
     <div id="welcomeView" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-indigo-700 to-blue-600 p-6 transition-opacity duration-700">
         <div class="bg-white/10 backdrop-blur-md border border-white/20 p-12 rounded-3xl shadow-2xl text-center max-w-lg w-full text-white transform transition-transform duration-500 hover:scale-105">
             
@@ -21,16 +24,51 @@
             <p class="text-xs font-bold uppercase tracking-widest text-blue-200 mb-10 drop-shadow-sm">Fashion Review</p>
             
            <h2 class="text-2xl font-bold text-white mb-2 drop-shadow-sm">Welcome to the Community!</h2>
-           <p class="text-sm text-blue-100/80 mb-8 leading-relaxed">Dive into verified reviews, real-world sizing tips, and everyday styling inspiration.
-           </p>
+           <p class="text-sm text-blue-100/80 mb-8 leading-relaxed">Dive into verified reviews, real-world sizing tips, and everyday styling inspiration.</p>
 
-            <button onclick="enterDashboard()" class="bg-white text-indigo-700 font-extrabold py-3.5 px-10 rounded-full shadow-lg hover:shadow-2xl hover:bg-blue-50 hover:scale-105 transition-all duration-300">
-                Click to Enter
+            <button onclick="goToLogin()" class="bg-white text-indigo-700 font-extrabold py-3.5 px-10 rounded-full shadow-lg hover:shadow-2xl hover:bg-blue-50 hover:scale-105 transition-all duration-300">
+                Admin Login
             </button>
         </div>
     </div>
 
+    <!-- ========================================== -->
+    <!-- VIEW 2: USER MANAGEMENT (LOGIN) -->
+    <!-- ========================================== -->
+    <div id="loginView" class="hidden opacity-0 min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-indigo-700 to-blue-600 p-6 transition-opacity duration-700">
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-10 rounded-3xl shadow-2xl max-w-md w-full text-white transform transition-transform duration-500">
+            
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold tracking-tight text-white drop-shadow-md">Admin Portal</h2>
+                <p class="text-xs text-blue-200 mt-2 uppercase tracking-widest">Aura Apparel Management</p>
+            </div>
 
+            <form onsubmit="attemptLogin(event)" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-semibold text-blue-200 uppercase tracking-wide mb-1">Username</label>
+                    <input type="text" id="adminUser" required placeholder="admin" 
+                           class="w-full bg-white/20 border border-white/30 text-white placeholder-blue-200/50 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-white/50 transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-blue-200 uppercase tracking-wide mb-1">Password</label>
+                    <input type="password" id="adminPass" required placeholder="••••••••" 
+                           class="w-full bg-white/20 border border-white/30 text-white placeholder-blue-200/50 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-white/50 transition">
+                </div>
+                <div class="pt-4 flex flex-col gap-3">
+                    <button type="submit" class="w-full bg-indigo-500 text-white font-extrabold py-3.5 rounded-xl shadow-lg hover:bg-indigo-400 transition-all duration-300">
+                        Access Dashboard
+                    </button>
+                    <button type="button" onclick="goBackToWelcome()" class="text-sm font-semibold text-blue-200 hover:text-white transition">
+                        Cancel & Go Back
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: THE MAIN DASHBOARD -->
+    <!-- ========================================== -->
     <div id="dashboardView" class="hidden opacity-0 transition-opacity duration-1000">
         
         <nav class="bg-gradient-to-r from-indigo-900 to-blue-800 text-white shadow-md sticky top-0 z-10">
@@ -46,14 +84,21 @@
                         </span>
                     </div>
                 </div>
-                <span class="bg-white/10 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-white/20 shadow-sm">
-                    NURHANNANI HANIS, ANIS NAZHIRAH, NURHAFIZAH
-                </span>
+                <div class="flex items-center gap-4">
+                    <span class="bg-white/10 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-white/20 shadow-sm hidden md:block">
+                        NURHANNANI HANIS, ANIS NAZHIRAH, NURHAFIZAH
+                    </span>
+                    <button onclick="logout()" class="bg-red-500/80 hover:bg-red-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest transition shadow-sm">
+                        Log Out
+                    </button>
+                </div>
             </div>
         </nav>
 
         <main class="max-w-5xl mx-auto px-6 py-8">
             <div class="space-y-6">
+                
+                <!-- Stats Row -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4 hover:border-indigo-300 transition-colors">
                         <div class="bg-blue-100 text-blue-600 p-3 rounded-xl">
@@ -75,27 +120,42 @@
                         </div>
                     </div>
 
-                    <div id="statusCard" class="bg-indigo-600 p-6 rounded-2xl shadow-sm border border-indigo-700 text-white flex flex-col justify-center transition-colors duration-500">
-                        <p class="text-[11px] font-bold text-indigo-200 uppercase tracking-wider block mb-1">Status</p>
+                    <div id="statusCard" class="bg-emerald-500 p-6 rounded-2xl shadow-sm border border-emerald-600 text-white flex flex-col justify-center transition-colors duration-500">
+                        <p class="text-[11px] font-bold text-emerald-100 uppercase tracking-wider block mb-1">Status</p>
                         <div class="flex items-center gap-2">
                             <span class="relative flex h-3 w-3">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                                 <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
                             </span>
-                            <span id="statusText" class="text-sm font-semibold">Connecting to Data Node...</span>
+                            <span id="statusText" class="text-sm font-semibold">Admin Authenticated</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- POST MANAGEMENT: Add New Form -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-6">
+                    <h3 class="text-sm font-bold text-slate-700 mb-4">Post Management: Add Manual Review</h3>
+                    <form id="addPostForm" onsubmit="createNewPost(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" id="newUsername" placeholder="Customer Username" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-500">
+                            <input type="date" id="newDate" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-500">
+                        </div>
+                        <textarea id="newComment" placeholder="Enter review text here..." required rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-500"></textarea>
+                        <button type="submit" class="bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-500 transition shadow-sm text-sm">
+                            Publish to Feed
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Feed Section -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mt-6">
-    <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex justify-between items-center">
-        <h3 class="text-sm font-bold text-slate-700">Community Feed</h3>
-        
-        <a href="https://www.instagram.com/p/C0T8HzGSgnT/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-200 transition-colors flex items-center gap-1.5 shadow-sm">
-            <span>View Original Post</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-        </a>
-    </div>
+                    <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex justify-between items-center">
+                        <h3 class="text-sm font-bold text-slate-700">Community Feed</h3>
+                        <a href="https://www.instagram.com/p/C0T8HzGSgnT/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-200 transition-colors flex items-center gap-1.5 shadow-sm">
+                            <span>View Original Post</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                    </div>
                     
                     <div id="feedList" class="max-h-[600px] overflow-y-auto p-6 space-y-6">
                     </div>
@@ -104,51 +164,109 @@
         </main>
     </div>
 
+    <!-- ========================================== -->
+    <!-- CORE JAVASCRIPT APP LOGIC -->
+    <!-- ========================================== -->
     <script>
-        // Ensure this filename matches your uploaded Excel file on GitHub
         const TARGET_FILE = './dataCakenis.xlsx';
+        let globalFeedData = []; // Stores combined Excel and Manual posts
 
-        function enterDashboard() {
-            const welcome = document.getElementById('welcomeView');
-            const dashboard = document.getElementById('dashboardView');
-            welcome.classList.add('opacity-0');
+        // --- NAVIGATION ---
+        function goToLogin() { transitionViews('welcomeView', 'loginView'); }
+        function goBackToWelcome() { transitionViews('loginView', 'welcomeView'); }
+        
+        function transitionViews(hideId, showId) {
+            const hideEl = document.getElementById(hideId);
+            const showEl = document.getElementById(showId);
+            hideEl.classList.add('opacity-0');
             setTimeout(() => {
-                welcome.classList.add('hidden');
-                dashboard.classList.remove('hidden');
-                autoLoadExcel();
-                setTimeout(() => {
-                    dashboard.classList.remove('opacity-0');
-                }, 50);
+                hideEl.classList.add('hidden');
+                showEl.classList.remove('hidden');
+                setTimeout(() => showEl.classList.remove('opacity-0'), 50);
             }, 700);
         }
 
-        async function autoLoadExcel() {
-            try {
-                const response = await fetch(TARGET_FILE);
-                if (!response.ok) throw new Error(`Data file not found.`);
-
-                const arrayBuffer = await response.arrayBuffer();
-                const data = new Uint8Array(arrayBuffer);
-                const workbook = XLSX.read(data, {type: 'array'});
-                const firstSheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[firstSheetName];
-                const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
-
-                buildDashboard(jsonData);
-                
-                const statusCard = document.getElementById('statusCard');
-                statusCard.classList.remove('bg-indigo-600', 'border-indigo-700');
-                statusCard.classList.add('bg-emerald-500', 'border-emerald-600');
-                document.getElementById('statusText').innerText = "Data Loaded";
-
-            } catch (error) {
-                const statusCard = document.getElementById('statusCard');
-                statusCard.classList.remove('bg-indigo-600', 'border-indigo-700');
-                statusCard.classList.add('bg-rose-500', 'border-rose-600');
-                document.getElementById('statusText').innerText = `Error: ${error.message}`;
+        // --- USER MANAGEMENT (LOGIN) ---
+        function attemptLogin(event) {
+            event.preventDefault();
+            // Simple validation for assignment purposes
+            const user = document.getElementById('adminUser').value;
+            const pass = document.getElementById('adminPass').value;
+            
+            if(user && pass) {
+                transitionViews('loginView', 'dashboardView');
+                loadData(); 
             }
         }
 
+        function logout() {
+            document.getElementById('adminUser').value = '';
+            document.getElementById('adminPass').value = '';
+            transitionViews('dashboardView', 'welcomeView');
+        }
+
+        // --- DATA LOADING & POST MANAGEMENT ---
+        async function loadData() {
+            try {
+                // 1. Fetch data from Excel
+                const response = await fetch(TARGET_FILE);
+                if (!response.ok) throw new Error(`Data file not found.`);
+                const arrayBuffer = await response.arrayBuffer();
+                const data = new Uint8Array(arrayBuffer);
+                const workbook = XLSX.read(data, {type: 'array'});
+                const jsonData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { defval: "" });
+
+                // 2. Fetch locally stored manual posts (from Post Management form)
+                const localPosts = JSON.parse(localStorage.getItem('auraManualPosts')) || [];
+
+                // 3. Combine both data sources
+                globalFeedData = [...localPosts, ...jsonData];
+                buildDashboard(globalFeedData);
+
+            } catch (error) {
+                console.error("Error loading data:", error);
+                document.getElementById('statusText').innerText = `Data Error`;
+            }
+        }
+
+        function createNewPost(event) {
+            event.preventDefault();
+            
+            const newPost = {
+                'Username': document.getElementById('newUsername').value,
+                'Date': document.getElementById('newDate').value,
+                'Comment Text': document.getElementById('newComment').value,
+                'Avatar URL': '', 
+                'Profile URL': '#'
+            };
+
+            // Save to LocalStorage so it persists during the session
+            const existingPosts = JSON.parse(localStorage.getItem('auraManualPosts')) || [];
+            existingPosts.unshift(newPost); // Add to beginning
+            localStorage.setItem('auraManualPosts', JSON.stringify(existingPosts));
+
+            // Reset form and reload UI
+            document.getElementById('addPostForm').reset();
+            loadData();
+        }
+
+        // --- INTEGRATION MANAGEMENT (SHARE API) ---
+        function sharePost(username, text) {
+            const shareData = {
+                title: `Review by @${username}`,
+                text: `Look at this review: "${text}"`,
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData).catch(console.error);
+            } else {
+                // Fallback to email client if Web Share API is not supported on desktop
+                window.location.href = `mailto:?subject=${encodeURIComponent(shareData.title)}&body=${encodeURIComponent(shareData.text)}`;
+            }
+        }
+
+        // --- UI BUILDER ---
         function buildDashboard(data) {
             document.getElementById('statTotal').innerText = data.length;
             const uniqueUsers = new Set();
@@ -184,7 +302,13 @@
                                     ${dateText}
                                 </span>
                             </div>
-                            <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap">${commentText}</p>
+                            <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap mb-3">${commentText}</p>
+                            
+                            <!-- Integration Management: Share Button -->
+                            <button onclick="sharePost('${username}', '${commentText.replace(/'/g, "\\'")}')" class="text-[11px] font-bold text-indigo-600 bg-indigo-100/50 hover:bg-indigo-200 px-3 py-1.5 rounded-md flex items-center gap-1.5 transition shadow-sm w-max">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                                Share Externally
+                            </button>
                         </div>
                     </div>
                 `;
